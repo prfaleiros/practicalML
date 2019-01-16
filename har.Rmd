@@ -1,0 +1,76 @@
+---
+title: "Practical Machine Learning - Human Activity Recognition"
+author: "Paulo Faleiros"
+date: "January 15, 2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Overview
+
+The objective of this project is to generate a model to predict the manner a certain individual performs a weight lift exercise. The exercise can be done correctly (class A) or with 4 different types of flaws (classes B, C, D and E). Based on data collected by sensors in athletes' arms, foreams, belts and in the dumbell, the model, after been trained, needs to be able to predict the exercise class for 20 test cases.
+
+```{r echo=FALSE, results="hide", message=FALSE}
+# load libraries
+library(ggplot2)
+library(ISLR)
+library(caret)
+library(kernlab)
+library(e1071)
+library(Hmisc)
+
+# set seed to ensure reproducibility
+set.seed(20190114)
+
+```
+
+## Data Preparation
+
+Read data
+
+```{r echo=TRUE}
+setwd("C:/Users/paulo.faleiros/Google Drive/Coursera/courses/JHU-DS/code")
+trainingRdat = read.csv("../data/pml-training.csv", stringsAsFactors = FALSE)
+validation = read.csv("../data/pml-testing.csv", stringsAsFactors = FALSE)
+
+```
+
+separate train, test and validation datasets
+```{r echo=TRUE}
+pmlData = createDataPartition(y=trainingRdat$classe, p=0.7, list=FALSE)
+training = trainingRdat[pmlData,]
+testing = trainingRdat[-pmlData,]
+
+```
+
+Produce tidy datasets
+
+```{r echo=TRUE}
+training[training=="" || training==" " || training=="NA" || training=="#DIV/0!"]<-NA
+testing[testing=="" || testing==" " || testing=="NA" || testing=="#DIV/0!"]<-NA
+
+```
+
+## Model creation
+
+Rationale for model selection (randomForest)
+
+Create a model with all predictors, verify accuracy, apply test dataset
+
+Tune model by eliminate features
+
+Select optimized model, verify accuracy, apply test dataset
+
+
+```{r  echo=FALSE}
+
+```
+
+## Validation dataset
+
+Apply model in the 20 test cases
+
+
