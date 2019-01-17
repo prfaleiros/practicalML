@@ -229,7 +229,7 @@ newValidation &lt;- validation[,predVars]</code></pre>
 <p>First try will be done with a simple Classification And Regression Trees (CART) model. Train a CART model with all predictors and generate a prediction with the testing set.</p>
 <pre class="r"><code>system.time({ fit.rpart &lt;- train(classe ~ ., data=newTraining, method=&quot;rpart&quot;) })</code></pre>
 <pre><code>##    user  system elapsed 
-##   16.58    0.61   18.47</code></pre>
+##   13.75    0.52   14.36</code></pre>
 <pre class="r"><code>c&lt;-confusionMatrix(newTesting$classe, predict(fit.rpart, newTesting))
 kable(c$table) %&gt;% kable_styling(bootstrap_options = &quot;striped&quot;, full_width = F)</code></pre>
 <table class="table table-striped" style="width: auto !important; margin-left: auto; margin-right: auto;">
